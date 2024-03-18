@@ -11,6 +11,9 @@
 <body>
 
 <?php
+    $parking = $_GET['parking'];
+
+   
 
     $hotels = [
 
@@ -52,9 +55,29 @@
 
     ];
 
+
+    if ($parking) {
+        $hotels = array_filter($hotels, function($hotel) {
+            return $hotel['parking'];
+        });
+    }
+
 ?>
 
 <div class="container">
+    <form>
+    <div class="mb-3">
+        <label for="vote" class="form-label">Inserisci il numero minimo di stelle</label>
+        <input type="password" name="vote" class="form-control" id="vote">
+    </div>
+    <div class="mb-3 form-check">
+        <input type="checkbox" name="parking" class="form-check-input" id="parking">
+        <label class="form-check-label" for="parking">Con il parcheggio</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+
         <table class="table">
             <thead>
                 <tr>
