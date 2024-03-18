@@ -76,7 +76,8 @@
 ?>
 
 <div class="container">
-    <form>
+    <h1 class="text-center my-3">PHP HOTELS</h1>
+    <form class="mb-4">
         <div class="mb-3">
             <label for="vote" class="form-label">Inserisci un numero da 1 a 5</label>
             <input type="number" name="vote" class="form-control" id="vote">
