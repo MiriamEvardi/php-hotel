@@ -12,6 +12,7 @@
 
 <?php
     $parking = $_GET['parking'];
+    $vote = $_GET['vote'];
 
    
 
@@ -60,21 +61,31 @@
         $hotels = array_filter($hotels, function($hotel) {
             return $hotel['parking'];
         });
+    };
+
+    if (!is_null($vote)) {
+        $hotels = array_filter($hotels, function($hotel) use ($vote) {
+            return $hotel['vote'] >= $vote;
+        });
+    };
+
+    if (!$parking && is_null($vote)) {
+        $hotels = $hotels;
     }
 
 ?>
 
 <div class="container">
     <form>
-    <div class="mb-3">
-        <label for="vote" class="form-label">Inserisci il numero minimo di stelle</label>
-        <input type="password" name="vote" class="form-control" id="vote">
-    </div>
-    <div class="mb-3 form-check">
-        <input type="checkbox" name="parking" class="form-check-input" id="parking">
-        <label class="form-check-label" for="parking">Con il parcheggio</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="mb-3">
+            <label for="vote" class="form-label">Inserisci un numero da 1 a 5</label>
+            <input type="number" name="vote" class="form-control" id="vote">
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" name="parking" class="form-check-input" id="parking">
+            <label class="form-check-label" for="parking">Con il parcheggio</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 
 
